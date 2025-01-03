@@ -44,10 +44,6 @@ func HandleBuildInCommands(args []string) bool {
 		}
 		return true
 	case "pwd":
-		if len(args) < 2 {
-			fmt.Println("pwd: missing arguement")
-			return true
-		}
 		wd, err := os.Getwd()
 		if err != nil {
 			fmt.Println("Error:", err)

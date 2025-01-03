@@ -24,26 +24,25 @@ func main() {
 
 		input = strings.TrimSpace(input)
 
-		// when user enters empty string it continues
+		/* // when user enters empty string it continues
 		if input == "" {
 			continue
 		}
+		*/
 
-		// Exiting the shell environment
+		/* // Exiting the shell environment
 		if input == "Exit" {
 			break
 		}
+		*/
 
-		args := parseInput(input)
+		args := cmd.ParseInput(input)
+
+		if cmd.HandleBuildInCommands(args) {
+			continue
+		}
+
 		cmd.ExecuteCommand(args)
-		fmt.Println("You entered:", args)
+		// fmt.Println("You entered:", args)
 	}
-
-	// goodbye message
-	fmt.Println("Goodbye, visit again...")
-}
-
-// parsing input
-func parseInput(input string) []string {
-	return strings.Fields(input)
 }
