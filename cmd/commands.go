@@ -51,7 +51,26 @@ func HandleBuildInCommands(args []string) bool {
 		}
 		fmt.Println(wd)
 		return true
+	case "ls":
+		files, err := os.ReadDir(getDir())
+		if err != nil {
+			fmt.Println("Error:", err)
+			return true
+		}
+
+		for _, file := range files {
+			fmt.Println(file.Name())
+		}
+
+		return true
 	}
 
 	return false
+}
+
+
+// get directory
+func getDir() string {
+	wd, _ := os.Getwd()
+	return wd
 }
